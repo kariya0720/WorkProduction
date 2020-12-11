@@ -9,6 +9,12 @@
     src: url('font/corp_round_v1.ttf');
 }
 
+// ハンバーガーメニュー　アニメーション　ios スクロールさせない
+.bodyActive{
+    position: fixed;
+    height: 100vh;
+}
+
 // 変数
 $sm: 450px;
 $tb: 768px;
@@ -57,7 +63,7 @@ body{
         width: 30px;
         height: 30px;
         cursor: pointer;
-        z-index: 3;
+        z-index: 500;
         right:30px;
         top: 30px;
 
@@ -101,20 +107,34 @@ body{
         transform: rotate(45deg);
     }
 
-
     // ヘッダー
     .header{
+        background-color: pink;
         display: flex;
         justify-content: space-between;
         max-height: 150px;
+        transition: all .5s;
+        z-index: 100;
 
         @media (max-width:$pc){
-            display: none;
+            transform: translateX(-100vw);
+            flex-direction: column;
+            height: 100vh;
+            max-height: 100vh;
+            justify-content: space-around;
+            position: fixed;
+            width: 100%;
         }
 
         &--titleLogo{
             width: 0px;
             margin: -30px 0 0 15px;
+
+            @media (max-width:$pc){
+                text-align: center;
+                width: 100%;
+                margin: 0;
+            }
 
             img{
                 width: auto;
@@ -127,11 +147,25 @@ body{
             display: flex;
             align-items: center;
 
+            @media (max-width:$pc){
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                height: 100%;
+            }
+
             li{
                 font-size: 20px;
                 padding: 0 15px;
             }
         }
+    }
+    
+    // ハンバーガーメニュー　クリック時　アニメーション
+    .active{
+        transform: translateX(0);
     }
 
     // メイン
@@ -151,7 +185,12 @@ body{
 
             h1{
                 padding: 0;
-                margin: 20px 20px;
+                margin: 20px;
+
+                @media (max-width:$pc){
+                    padding: 20px;
+                    margin: 0;
+                }
             }
         }
 
